@@ -2,9 +2,9 @@ const StopEvent = require("../modules/StopEvent");
 
 async function getNextDepartures(req, res) {
     try {
-        const stopId = req.params.stopId;
-        if (!stopId) return res.status(400).json({ error: "Missing required parameter stopId" });
-        const departures = await StopEvent.getNextDepartures(stopId);
+        const stopRef = req.params.stopRef;
+        if (!stopRef) return res.status(400).json({ error: "Missing required parameter stopRef" });
+        const departures = await StopEvent.getNextDepartures(stopRef);
         res.json(departures);
     } catch (error) {
         console.error(error);

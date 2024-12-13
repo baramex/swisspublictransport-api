@@ -35,6 +35,8 @@ class LocationInformation extends OJP {
             result.push(new Stop(
                 stop.getElementsByTagName("Name").item(0).getElementsByTagName("Text").item(0).textContent,
                 stop.getElementsByTagName("StopPlaceRef").item(0).textContent,
+                stop.getElementsByTagName("siri:Longitude").item(0).textContent,
+                stop.getElementsByTagName("siri:Latitude").item(0).textContent,
                 stop.getElementsByTagName("Probability").item(0).textContent
             ));
         }

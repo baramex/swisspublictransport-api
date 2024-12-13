@@ -2,12 +2,12 @@ const Departure = require("./Departure");
 const OJP = require("./OJP");
 
 class StopEvent extends OJP {
-    static async getNextDepartures(stopId, count = 10) {
+    static async getNextDepartures(stopRef, count = 10) {
         const res = await this.request(`
             <OJPStopEventRequest>
                 <Location>
                   <PlaceRef>
-                      <StopPlaceRef>${stopId}</StopPlaceRef>
+                      <StopPlaceRef>${stopRef}</StopPlaceRef>
                   </PlaceRef>
               </Location>
               <Params>
@@ -19,10 +19,10 @@ class StopEvent extends OJP {
           </OJPStopEventRequest>
         `);
 
-        return this.parseXML(res.data);
+        return this.parseXML(res.data, stopRef);
     }
 
-    static parseXML(data) {
+    static parseXML(data, stopRef) {
         const dom = this.domXML(data);
         const departures = dom.getElementsByTagName("StopEvent");
         const result = [];
@@ -31,7 +31,7 @@ class StopEvent extends OJP {
             const thisCall = departure.getElementsByTagName("ThisCall").item(0);
             const service = departure.getElementsByTagName("Service").item(0);
             result.push(new Departure(
-                thisCall.getElementsByTagName("siri:StopPointRef").item(0)?.textContent,
+                stopRef,
                 service.getElementsByTagName("siri:LineRef").item(0)?.textContent,
                 service.getElementsByTagName("siri:DirectionRef").item(0)?.textContent,
                 thisCall.getElementsByTagName("ServiceDeparture").item(0).getElementsByTagName("TimetabledTime").item(0)?.textContent,

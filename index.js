@@ -18,4 +18,4 @@ app.use((req, res, next) => {
     next();
 });
 app.get('/stops/near', getNearStops);
-app.get("/stops/:stopId/departures", getNextDepartures);
+app.get("/stops/:stopRef/departures", getNextDepartures);
