@@ -1,14 +1,21 @@
 require('dotenv').config();
 
 const express = require('express');
-const LocationInformation = require('./modules/LocationInformation');
-const StopEvent = require('./modules/StopEvent');
+const { getNearStops } = require('./routes/stops');
+const { getNextDepartures } = require('./routes/departures');
 const app = express();
-const port = 3000;
+const port = 6585;
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
 
-LocationInformation.getNearStops(6.155931562557049, 46.20005937061525).then(console.log).catch(console.error);
-StopEvent.getNextDepartures(8592910).then(console.log).catch(console.error);
+app.use((req, res, next) => {
+    const key = req.headers.authorization?.split(" ")[1];
+    if (key !== process.env.API_KEY) {
+        return res.status(401).json({ error: "Unauthorized" });
+    }
+    next();
+});
+app.get('/stops/near', getNearStops);
+app.get("/stops/:stopId/departures", getNextDepartures);
