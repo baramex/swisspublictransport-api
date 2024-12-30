@@ -17,5 +17,5 @@ app.use((req, res, next) => {
     }
     next();
 });
-app.get('/stops/near', getNearStops);
+app.get('/stops/nearby', getNearStops);
 app.get("/stops/:stopRef/departures", getNextDepartures);

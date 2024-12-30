@@ -1,5 +1,6 @@
 class Departure {
-    constructor(stopRef, lineRef, direction, scheduledDepartureTime, realtimeDepartureTime, platformName, lineName, destinationName, cancelled, unplanned, deviation) {
+    constructor(tripRef, stopRef, lineRef, direction, scheduledDepartureTime, realtimeDepartureTime, platformName, lineName, destinationName, cancelled, unplanned, deviation) {
+        this.tripRef = tripRef;
         this.stopRef = stopRef;
         this.lineRef = lineRef;
         this.direction = direction;
