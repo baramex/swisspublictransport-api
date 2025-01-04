@@ -27,9 +27,10 @@ class StopEvent extends OJP {
         const departures = dom.getElementsByTagName("StopEvent");
         const result = [];
         for (let i = 0; i < departures.length; i++) {
-            const departure = departures.item(i);
+            const departure = departures.item(i)
             const thisCall = departure.getElementsByTagName("ThisCall").item(0);
-            const service = departure.getElementsByTagName("Service").item(0);
+            const service = departure.getElementsByTagName("Service").item(0);;
+            console.log(service);
             result.push(new Departure(
                 service.getElementsByTagName("TripRef").item(0)?.textContent, // TO CHECK
                 stopRef,
