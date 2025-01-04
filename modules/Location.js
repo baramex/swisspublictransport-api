@@ -1,5 +1,5 @@
 class Location {
-    static getDistance(lat1, lon1, lat2, lon2) {
+    static getDistance(lon1, lat1, lon2, lat2) {
         const R = 6371e3; // metres
         const p1 = lat1 * Math.PI / 180; // p, l in radians
         const p2 = lat2 * Math.PI / 180;
