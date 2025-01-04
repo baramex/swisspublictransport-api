@@ -12,6 +12,7 @@ class Departure {
         this.cancelled = cancelled === "true" ? true : false;
         this.unplanned = unplanned === "true" ? true : false;
         this.deviation = deviation === "true" ? true : false;
+        this.order = undefined;
     }
 }
 

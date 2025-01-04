@@ -5,6 +5,7 @@ class Stop {
         this.lon = Number(lon);
         this.lat = Number(lat);
         this.probability = probability;
+        this.order = undefined;
     }
 }
 
