@@ -1,4 +1,3 @@
-const Location = require("./Location");
 const OJP = require("./OJP");
 const Stop = require("./Stop");
 
@@ -41,8 +40,7 @@ class LocationInformation extends OJP {
                 stop.getElementsByTagName("Probability").item(0).textContent
             ));
         }
-        result.sort((a, b) => Location.getDistance(lon, lat, a.lon, a.lat) - Location.getDistance(lon, lat, b.lon, b.lat));
-        return result.map((a, i) => ({ ...a, order: i }));
+        return result;
     }
 }
 
