@@ -46,6 +46,7 @@ class StopEvent extends OJP {
             ));
         }
         result.sort((a, b) => (a.realtimeDepartureTime || a.scheduledDepartureTime) - (b.realtimeDepartureTime || b.scheduledDepartureTime));
+        console.log(result);
         return result;
     }
 }
