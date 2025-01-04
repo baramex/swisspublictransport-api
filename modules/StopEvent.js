@@ -45,7 +45,8 @@ class StopEvent extends OJP {
                 service.getElementsByTagName("Deviation").item(0)?.textContent
             ));
         }
-        return result.sort((a, b) => (a.realtimeDepartureTime || a.scheduledDepartureTime) - (b.realtimeDepartureTime || b.scheduledDepartureTime));
+        result.sort((a, b) => (a.realtimeDepartureTime || a.scheduledDepartureTime) - (b.realtimeDepartureTime || b.scheduledDepartureTime));
+        return result;
     }
 }
 
