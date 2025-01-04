@@ -1,3 +1,4 @@
+const Location = require("./Location");
 const OJP = require("./OJP");
 const Stop = require("./Stop");
 

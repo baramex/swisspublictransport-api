@@ -1,4 +1,3 @@
-const Location = require("../modules/Location");
 const LocationInformation = require("../modules/LocationInformation");
 
 async function getNearStops(req, res) {
