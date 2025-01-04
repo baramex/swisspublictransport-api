@@ -4,8 +4,8 @@ class Departure {
         this.stopRef = stopRef;
         this.lineRef = lineRef;
         this.direction = direction;
-        this.scheduledDepartureTime = new Date(scheduledDepartureTime);
-        this.realtimeDepartureTime = new Date(realtimeDepartureTime);
+        this.scheduledDepartureTime = Math.round(new Date(scheduledDepartureTime).getTime() / 1000);
+        this.realtimeDepartureTime = Math.round(new Date(realtimeDepartureTime).getTime() / 1000);
         this.platformName = platformName;
         this.lineName = lineName;
         this.destinationName = destinationName;
