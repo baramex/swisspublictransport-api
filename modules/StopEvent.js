@@ -1,4 +1,5 @@
 const Departure = require("./Departure");
+const linie = require("./Line");
 const OJP = require("./OJP");
 
 class StopEvent extends OJP {
@@ -29,11 +30,11 @@ class StopEvent extends OJP {
         for (let i = 0; i < departures.length; i++) {
             const departure = departures.item(i)
             const thisCall = departure.getElementsByTagName("ThisCall").item(0);
-            const service = departure.getElementsByTagName("Service").item(0);;
+            const service = departure.getElementsByTagName("Service").item(0);
+
+            const line = linie.getLineByName(service.getElementsByTagName("PublishedServiceName").item(0).getElementsByTagName("Text").item(0)?.textContent);
             result.push(new Departure(
-                service.getElementsByTagName("JourneyRef").item(0)?.textContent,
                 stopRef,
-                service.getElementsByTagName("siri:LineRef").item(0)?.textContent,
                 service.getElementsByTagName("siri:DirectionRef").item(0)?.textContent,
                 thisCall.getElementsByTagName("ServiceDeparture").item(0).getElementsByTagName("TimetabledTime").item(0)?.textContent,
                 thisCall.getElementsByTagName("ServiceDeparture").item(0).getElementsByTagName("EstimatedTime").item(0)?.textContent,
@@ -42,11 +43,13 @@ class StopEvent extends OJP {
                 service.getElementsByTagName("DestinationText").item(0).getElementsByTagName("Text").item(0)?.textContent,
                 service.getElementsByTagName("Cancelled").item(0)?.textContent,
                 service.getElementsByTagName("Unplanned").item(0)?.textContent,
-                service.getElementsByTagName("Deviation").item(0)?.textContent
+                service.getElementsByTagName("Deviation").item(0)?.textContent,
+                line?.color,
+                line?.textColor
             ));
         }
         result.sort((a, b) => (a.realtimeDepartureTime || a.scheduledDepartureTime) - (b.realtimeDepartureTime || b.scheduledDepartureTime));
-        return result.map((a,i) => ({...a, order: i}));
+        return result.map((a, i) => ({ ...a, order: i }));
     }
 }
 
