@@ -10,6 +10,7 @@ class Linie {
 
         var currLine = null;
         for (const line of l) {
+            console.log(line);
             if (line.charAt(8) === "N") {
                 currLine = new Line(line.substring(0, 7), line.substring(12));
             }
@@ -23,7 +24,6 @@ class Linie {
             }
 
             if (currLine && currLine.color && currLine.textColor) {
-                console.log(currLine);
                 this.lines.push(currLine);
                 currLine = null;
             }
