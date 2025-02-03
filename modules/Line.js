@@ -6,7 +6,7 @@ class Linie {
 
     init() {
         const content = fs.readFileSync(path.join(__dirname, "..", "feeds", "LINIE"));
-        const l = content.toString().split("\r\n");
+        const l = content.toString().split("\n").replace(/\r/g, "");
 
         var currLine = null;
         for (const line of l) {
@@ -22,7 +22,6 @@ class Linie {
                 }
             }
 
-            console.log(currLine);
             if (currLine && currLine.color && currLine.textColor) {
                 this.lines.push(currLine);
                 currLine = null;
