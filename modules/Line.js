@@ -6,6 +6,7 @@ class Linie {
 
     init() {
         const content = fs.readFileSync(path.join(__dirname, "..", "feeds", "LINIE"));
+        console.log(content);
         const l = content.toString().split("\r\n");
 
         var currLine = null;

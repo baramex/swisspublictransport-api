@@ -33,6 +33,7 @@ class StopEvent extends OJP {
             const service = departure.getElementsByTagName("Service").item(0);
 
             const line = linie.getLineByName(service.getElementsByTagName("PublishedServiceName").item(0).getElementsByTagName("Text").item(0)?.textContent);
+            console.log(line);
             result.push(new Departure(
                 stopRef,
                 service.getElementsByTagName("siri:DirectionRef").item(0)?.textContent,
